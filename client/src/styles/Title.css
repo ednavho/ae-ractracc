@@ -1,0 +1,12 @@
+.title {
+    padding: 10px 0 10px 0;
+    width: 100vw;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: calc(20px + 2vw);
+    font-weight: bold;
+
+}
