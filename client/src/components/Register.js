@@ -17,6 +17,20 @@ return (
         
         <div>
             <h3>Name</h3>
+            <input type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
         </div>
+
+        <div>
+            <h3>Email</h3>
+            <input type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
+        </div>
+
+        <div>
+            <h3>Password</h3>
+            <input type="text" id="password" className="form-field" value={email} onChange={(event) => setPassword(event.target.value)}></input>
+        </div>
+
+        <button className="btn" type="submit" onClick={handleRegister}>Register</button>
+
     </div>
 )
