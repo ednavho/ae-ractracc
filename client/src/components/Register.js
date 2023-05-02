@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
+import '../styles/Register.css';
+
 
 export default function Login() {
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ export default function Login() {
         console.log(`Registering user with name: ${name}, with email: ${email} and password: ${password}`);
 
         try {
-            const registerResponse = await axios.post();
+            const registerResponse = await axios.post("https://localhost:9000/api/users/register", {name, email, password});
             alert('User created! Check your email for an email verification link to activate your account.');
             setRegistering(false);
             console.log(registerResponse);
@@ -46,29 +48,32 @@ export default function Login() {
 
     }
 
+    
+
 
     return (
-        <div>
-            <h1>Register</h1>
-            
-            <div>
-                <h3>Name</h3>
-                <input type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
+        <div className="bg-container">
+            <div className="register-container">
+                <h1>Register</h1>
+                
+                <div className="input-field">
+                    <h3 className="field-label">Name</h3>
+                    <input type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
+                </div>
+
+                <div className="input-field">
+                    <h3 className="field-label">Email</h3>
+                    <input type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
+                </div>
+
+                <div className="input-field">
+                    <h3 className="field-label">Password</h3>
+                    <input type="text" id="password" className="form-field" value={password} onChange={(event) => setPassword(event.target.value)}></input>
+                </div>
+
+                <button className="btn" type="submit" onClick={handleRegister}>Register</button>
+                <h3 className="footer" onClick={() => navigate('/')}>Login with existing account</h3>
             </div>
-
-            <div>
-                <h3>Email</h3>
-                <input type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
-            </div>
-
-            <div>
-                <h3>Password</h3>
-                <input type="text" id="password" className="form-field" value={password} onChange={(event) => setPassword(event.target.value)}></input>
-            </div>
-
-            <button className="btn" type="submit" onClick={handleRegister}>Register</button>
-            <h3 className="footer" onClick={() => navigate('/')}>Login with existing account</h3>
-
         </div>
     )
 };
