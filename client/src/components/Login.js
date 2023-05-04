@@ -20,7 +20,7 @@ export default function Login() {
         setLoggingIn(true);
 
         try {
-            const loginResponse = await axios.post('https://localhost:9000/api/users/login', {email, password});
+            const loginResponse = await axios.post('http://localhost:9000/api/users/login', {email, password});
             localStorage.setItem('jwt_token', loginResponse.data.token);
             setLoggingIn(false);
             navigate('/home');
