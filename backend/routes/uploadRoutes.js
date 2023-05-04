@@ -9,7 +9,7 @@ const { authenticateToken } = require('../middleware/userAuth');
 
 // routes
 router.post('/createUpload', createUpload);
-router.get('/getSessions', authenticateToken, getUploads);
+router.get('/getUploads', authenticateToken, getUploads);
 router.delete('/deleteUpload', deleteUpload);
 
 module.exports = router;
