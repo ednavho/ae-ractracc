@@ -6,14 +6,14 @@ require("dotenv").config();
 // @desc    Create new post 
 // @route   POST api/study/createUpload (FIX THIS)
 const createUpload = async (req, res) => {
-    const { userId, image, location, date} = req.body;
+    const { userId, imagepath, location, date} = req.body;
 
     try {
         const user = await User.findOne({ _id: userId });
         const upload = await Session.create({
             user: user.name,
             userId,
-            image,
+            imagepath,
             location,
             date
         });
@@ -35,7 +35,7 @@ const getUploads = async (req, res) => {
         uploads = uploads.sort((a, b) => b.start - a.start);
         const uploadsData = uploads.map((upload) => 
             ({
-                img: upload.image, // fix this for formatting
+                imgpath: upload.imagepath, // fix this for formatting
                 loc: upload.start,
                 dat: upload.date,
             })

@@ -9,7 +9,7 @@ const uploadSchema = new mongoose.Schema(
             required: true,
             ref: 'User',
         },
-        image: { type: Buffer, required: true }, 
+        imagepath: { type: String, required: true }, 
         location: { type: String, required: true }, // city, state, country?
         date: { type: Date, required: true },
     },
