@@ -45,7 +45,13 @@ export default function UserProfile() {
         return <div> Loading ...</div>;
     }
 
-    const handlePostClick
+    const handlePostClick = (post) => {
+        setSelectedPost(post);
+    }
+
+    const handleClosePostDetails = () => {
+        setSelectedPost(null);
+    }
 
     return (
         <div className="user-profile">
@@ -54,18 +60,21 @@ export default function UserProfile() {
                     <img src={user.profilePicture} alt={user.name} className="profile-picture"/>
                 </div>
 
-                <div className="profile-stats">
-                    <strong>{user.postCount}</strong>
+                <div className="profile-info">
+                    <div className="profile-stats">
+                        <strong>{user.postCount}</strong>
+                    </div>
                 </div>
             </div>
 
             <div className="post-grid">
                 {posts.map(post => (
-                    <div key={post.id} className="post">
+                    <div key={post.id} className="post" onClick={() => handlePostClick(post)}>
                         <img src={post.image} alt={post.caption} />
                     </div>
                 ))}
             </div>
+            {selectedPost && <PostDetails post={selectedPost} onClose={handleClosePostDetails} />}
         </div>
 
         
