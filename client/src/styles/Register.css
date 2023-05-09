@@ -1,21 +1,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
-
-body {
+::placeholder {
+    color: #9A8F8F;
+}
+/* body {
     margin: 0px;
     padding: 0px;
     width: 100vw;
     height: 100vh;
-    background-color: #7FBADC;
+    background-color: transparent;
     font-family: 'Roboto Flex', sans-serif;
     color: white;
-}
+} */
 
 .bg-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: #9CBACF;
 }
 
 .register-container {
@@ -25,51 +28,59 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+}
+
+.register-container h1 {
+    font-size: 35px;
+    background-color: transparent;
 }
 
 .input-field {
     width: 65vw;
-    margin: 0px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
+    background-color: transparent;
 }
 
 .input-field .field-label {
     font-size: 26 px;
     font-weight: 400;
-    margin: 0px 0px 5px 0px;
+    margin: 5px 0px 5px 0px;
+    background-color: transparent;
 }
 
 .input-field .form-field {
     width: 100%;
     height: 46px;
-    background-color: #457B9D;
+    background-color: rgb(244, 229, 229);
     border-radius: 15px;
-    border-color: #457B9D;
+    border-color: white;
     border-style: solid;
     align-items: center;
     font-size: 22px;
     font-weight: 400;
     padding: 0px 0px 0px 10px;
-    color: white;
+    color:  black;
 }
 
 .register-container .btn {
     width: 150px;
     height: 55px;
     margin: 5vh 0px 0px 0px;
-    background-color: #26446E;
+    background-color: #FFFFFF;
     border-radius: 15px;
-    border-color: #26446E;
-    border-style: solid;
+    border-style: none;
     font-size: 20px;
     font-weight: 400;
-    color: white;
+    color: #9CBACF;
 }
 
 .register-container .btn:hover {
-    background-color: #457B9D;
+    background-color: #909496;
 }
 
 .register-container .footer {
+    background-color: transparent;
     font-size: 22px;
     font-weight: 400;
     text-align: center;
