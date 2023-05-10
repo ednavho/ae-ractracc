@@ -24,7 +24,7 @@ const PostDetails = ({ post, onClose }) => {
     );
 };
 
-export default function UserProfile() {
+const UserProfile = ({ userId }) => {
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
     const [selectedPost, setSelectedPost] = useState(null);
@@ -51,6 +51,22 @@ export default function UserProfile() {
 
     const handleClosePostDetails = () => {
         setSelectedPost(null);
+    }
+
+    const PostDetails = ({ post }) => {
+        return (
+            <div className="post-details-overlay">
+                <div className="post-details">
+                    <img src={post.image} alt={post.caption}/>
+                    <div className="post-info">
+                        <h2>{post.caption}</h2>
+                        <div className="post-location">{post.location}</div>
+                        <div className="post-time">{post.time}</div>
+                        <button onClick={handleClosePostDetails}>X</button>
+                    </div>
+                </div>
+            </div>
+        )
     }
 
     return (
