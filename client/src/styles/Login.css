@@ -1,42 +1,50 @@
 /* all styling */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
 
-body {
+/*  body {
     margin: 0px;
     padding: 0px;
     width: 100vw;
     height: 100vh;
-    background-color: #7FBADC;
+    background-color: #545050;
     font-family: 'Roboto Flex', sans-serif;
-    color: white;
-}
+    color: white; 
+} */
 
-.bg-container {
+.bg-container-log {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    background-color: #545050;
 }
 
-.loading {
+.loading-log {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.loading img {
+.loading-log img {
     width: 30px;
     height: 30px;
 }
 
-.login-container {
+.login-container-log {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+}
+
+.login-container-log h1 {
+    font-size: 32px;
+    color: #5DA3D3;
+    background-color: transparent;
 }
 
 /* end all styling */
@@ -48,23 +56,24 @@ body {
     margin: 0px 0px 10vh 0px;
 } */
 
-.input-field {
+.input-field-log {
+    background-color: transparent;
     width: 65vw;
-    margin: 0px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
 }
 
-.input-field .field-label {
+.input-field-log .field-label-log {
     font-size: 26px;
     font-weight: 400;
-    margin: 0px 0px 5px 0px;
+    margin: 5px 0px 5px 0px;
 }
 
-.input-field .form-field {
+.input-field-log .form-field-log {
     width: 100%;
     height: 46px;
-    background-color: #457B9D;
+    background-color: white;
     border-radius: 15px;
-    border-color: #457B9D;
+    border-color:white;
     border-style: solid;
     align-items: center;
     font-size: 22px;
@@ -73,30 +82,31 @@ body {
     color: white;
 }
 
-.login-container .btn {
+.login-container-log .btn-log {
     width: 150px;
     height: 55px;
     margin: 5vh 0px 0px 0px;
-    background-color: #26446E;
+    background-color: #5DA3D3;
     border-radius: 15px;
-    border-color: #26446E;
-    border-style: solid;
+    border-style: none;
     font-size: 20px;
     font-weight: 400;
     color: white;
 }
 
-.login-container .btn:hover {
-    background-color: #457B9D;
+.login-container-log .btn-log:hover {
+    background-color: #5DA3D3;
 }
 
-.login-container .footer {
+.login-container-log .footer-log {
     font-size: 22px;
     font-weight: 400;
     text-align: center;
+    background-color: transparent;
+    color: #FFFFFF;
     margin: 10vh 0px 0px 0px;
 }
 
-.login-container .footer:hover {
+.login-container-log .footer-log:hover {
     color: #26446E;
 }

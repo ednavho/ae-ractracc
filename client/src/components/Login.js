@@ -37,28 +37,28 @@ export default function Login() {
     }
 
 
-
+// # 545050 # D9D9D9 # 5DA3D3 # 9A8F8F
 
     return (
-        <div className="bg-container">
-            <div className='login-container'>
-                <h1>Login</h1>
+        <div className="bg-container-log">
+            <div className='login-container-log'>
+                <h1>Welcome, Tracker</h1>
 
-                <div className="input-field">
-                    <h3 className="field-label">Email</h3>
-                    <input type="text" id="email" className="form-field" value={email}
+                <div className="input-field-log">
+                    {/* <h3 className="field-label-log">Email</h3> */}
+                    <input placeholder='Email' type="text" id="email" className="form-field-log" value={email}
                         onChange={(event) => setEmail(event.target.value)}></input>
                 </div>
 
-                <div className="input-field">
-                    <h3 className="field-label">Password</h3>
-                    <input type="password" id="password" className="form-field" value={password}
+                <div className="input-field-log">
+                    {/* <h3 className="field-label-log">Password</h3> */}
+                    <input placeholder='Password' type="password" id="password" className="form-field-log" value={password}
                         onChange={(event) => setPassword(event.target.value)}></input>
                 </div>
 
-                <button className="btn" type="submit" onClick={handleLogin}>Login</button>
+                <button className="btn-log" type="submit" onClick={handleLogin}>Login</button>
 
-                <h3 className="footer" onClick={() => navigate('/register')}>Don't have an account?</h3>
+                <h3 className="footer-log" onClick={() => navigate('/register')}>Don't have an account?</h3>
 
             </div>
         </div>

@@ -54,21 +54,21 @@ export default function Login() {
     return (
         <div className="bg-container">
             <div className="register-container">
-                <h1>Register</h1>
+                <h1>Create An Account</h1>
                 
                 <div className="input-field">
-                    <h3 className="field-label">Name</h3>
-                    <input type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
+                    {/* <h3 className="field-label">Name</h3> */}
+                    <input placeholder="Name" type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
                 </div>
 
                 <div className="input-field">
-                    <h3 className="field-label">Email</h3>
-                    <input type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
+                    {/* <h3 className="field-label">Email</h3> */}
+                    <input placeholder="Email" type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
                 </div>
 
                 <div className="input-field">
-                    <h3 className="field-label">Password</h3>
-                    <input type="text" id="password" className="form-field" value={password} onChange={(event) => setPassword(event.target.value)}></input>
+                    {/* <h3 className="field-label">Password</h3> */}
+                    <input placeholder="Password" type="text" id="password" className="form-field" value={password} onChange={(event) => setPassword(event.target.value)}></input>
                 </div>
 
                 <button className="btn" type="submit" onClick={handleRegister}>Register</button>
