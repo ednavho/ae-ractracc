@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../styles/Register.css';
 
 
-export default function Login() {
+export default function Register() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
