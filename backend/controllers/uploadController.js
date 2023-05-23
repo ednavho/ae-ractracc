@@ -4,21 +4,22 @@ const User = require('../models/userModel');
 require("dotenv").config();
 
 // @desc    Create new post 
-// @route   POST api/study/createUpload (FIX THIS)
+// @route   POST api/uploads/createUpload (FIX THIS)
 const createUpload = async (req, res) => {
-    const { userId, imagepath, location, date} = req.body;
+    const { userId, imagepath, caption, location } = req.body;
 
     try {
-        const user = await User.findOne({ _id: userId });
-        const upload = await Session.create({
-            user: user.name,
-            userId,
-            imagepath,
-            location,
-            date
+
+        //res.send(file);
+        // const user = await User.findOne({ _id: userId });
+        const upload = await Upload.create({
+            userId: userId,
+            imagepath: imagepath,
+            caption: caption,
+            location: location,
         });
         console.log(upload);
-        return res.status(201).json(upload);
+        return res.status(201).json({ upload });
     } catch (err) {
         return res.status(400).json({
             message: 'Error creating upload',
@@ -28,30 +29,61 @@ const createUpload = async (req, res) => {
 }
 
 // @desc    Get posts for logged in user (for web app)
-// @route   GET api/study/getSessions (CHange this route)
+// @route   GET api/uploads/getUploads
 const getUploads = async (req, res) => {
     try {
-        let uploads = await Upload.find({ userId: req.user._id });
-        uploads = uploads.sort((a, b) => b.start - a.start);
+        let uploads = await Upload.find({ userId: req.user._id })
+            .sort({ created_at: -1 }); // Sort in descending order of 'created_at' field
+            //.limit(req.limit); // Limit the results to 'limit' number of documents
         const uploadsData = uploads.map((upload) => 
             ({
-                imgpath: upload.imagepath, // fix this for formatting
-                loc: upload.start,
-                dat: upload.date,
+                _id: upload.id,
+                imgpath: upload.imagepath, // backend/media/uploads/userID_postID.png
+                caption: upload.caption,
+                location: upload.location,
             })
         );
         console.log(uploadsData);
         return res.status(200).json(uploadsData);
+
     } catch (err) {
         return res.status(404).json({
-            message: 'Error fetching sessions',
+            message: 'Error fetching uploads',
             error: err
         });
     }
 }
 
+// @desc    Get feed posts for logged in user (for web app)
+// @route   GET api/uploads/getFeed
+const getFeed = async (req, res) => {
+    // for {limit: num}
+    try {
+        let uploads = await Upload.find({})
+            .sort({ created_at: 0 }) // Sort in ascending order of 'created_at' field
+            .limit(req.limit); // Limit the results to 'limit' number of documents
+        const uploadsData = uploads.map((upload) =>
+            ({
+                _id: upload.id,
+                imagepath: upload.imagepath,
+                caption: upload.caption,
+                location: upload.location,
+            })
+        );
+        console.log(uploadsData.reverse());
+        return res.status(200).json(uploadsData.reserve());
+        
+    } catch (err) {
+        return res.status(404).json({
+            message: 'Error fetching feed',
+            error: err
+        });
+    }
+}
+
+
 // @desc    Delete study session
-// @route   DELETE api/study/deleteUpload
+// @route   DELETE api/uploads/deleteUpload
 const deleteUpload = async (req, res) => {
     try {
         const upload = await Upload.findById(req.params.id);
@@ -81,5 +113,6 @@ const deleteUpload = async (req, res) => {
 module.exports = {
     createUpload,
     getUploads,
+    getFeed,
     deleteUpload
 }

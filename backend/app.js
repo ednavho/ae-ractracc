@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
 const cors = require("cors");
 require("dotenv").config();
 
@@ -13,16 +14,20 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('DB CONNECTED'))
 .catch(err => console.log('DB CONNECTION ERROR', err));
 
+app.use(express.static('public'));
+app.use('/images', express.static('images'));
+
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({ origin: true, credentials: true }));
 
+
 // routes
 const userRouter = require('./routes/userRoutes');
 const uploadRouter = require('./routes/uploadRoutes');
 app.use('/api/users', userRouter);
-app.use('/api/upload', uploadRouter);
+app.use('/api/uploads', uploadRouter);
 
 // deployment
 // if (process.env.NODE_ENV === 'production') {
