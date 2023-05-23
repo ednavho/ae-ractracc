@@ -25,5 +25,4 @@ export default Tab = ({name, icon, active, onClick}) => {
             {active && <Indicator/>}
         </div>
     )
-    
-}
+};
