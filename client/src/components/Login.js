@@ -23,7 +23,7 @@ export default function Login() {
             const loginResponse = await axios.post('http://localhost:9000/api/users/login', {email, password});
             localStorage.setItem('jwt_token', loginResponse.data.token);
             setLoggingIn(false);
-            navigate('/home');
+            navigate('/feed');
         } catch (err) {
             if (err.response.status === 403) {
                 alert('User has not verified their email. Please check your email to complete verification.');

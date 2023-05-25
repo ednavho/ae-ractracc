@@ -1,99 +1,85 @@
-
-import React, {useState, useEffect} from 'react';
+import '../styles/Profile.css';
+import Menu from './Menu';
+import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
-const PostDetails = ({ post, onClose }) => {
+function Profile() {
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState([]);
+
+    const getUserPosts = () => {
+        axios.get('http://localhost:9000/api/uploads/getUploads', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+            }
+        })
+        .then((response) => {
+            console.log(response.data); // Image uploaded successfully
+            setPosts(response.data);
+            console.log(posts);
+            // Handle any additional logic or UI updates
+        })
+        .catch((error) => {
+            console.error(error);
+            // Handle error
+        });
+    }
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwt_token');
+        if (token) {
+          const fetchData = async () => {
+            try {
+                const fetchUser = await axios.get('http://localhost:9000/api/users/whoami', {
+                    headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+                    }
+                });
+                setUser(fetchUser.data);
+                getUserPosts();
+            } catch (err) {
+              localStorage.removeItem('jwt_token');
+              alert('Invalid session, navigating to login page.');
+              console.log(err);
+              navigate('/');
+            }
+          }
+          fetchData();
+        }
+        else {
+          navigate('/');
+        }
+    }, [navigate]);
+
+    
+    
+
+
+
+
+
     return (
-        <div className="post-details">
-            <div className="post-image-container">
-                <img src={post.image} alt={post.caption} className="post-image"/>
-                <button className="close-button" onClick={onClose}>X</button>
+        <div className='profile'>
+            Profile
+            <div>
+                {user ? user.name : 'loading name...'}
             </div>
-            <div className="post-info">
-                <div className="post-header">
-                    <img src={post.user.profilePicture} alt={post.user.name} className="profile-picture"/>
-                    <div className="post-user-info">
-                        <div className="post-user-name">{post.user.name}</div>
-                        <div className="post-location">{post.location}</div>
-                    </div>
-                </div>
-                <div className="post-caption">{post.caption}</div>
-                <div className="post-time">{post.time}</div>
+            <div>
+                
+                {posts.map((post) => { return (< img src={'http://localhost:9000/images/' + post.imagepath} />) }
+                )}
             </div>
+            
+
+            <Menu/>
+        
+        
         </div>
     );
 };
 
-const UserProfile = ({ userId }) => {
-    const [user, setUser] = useState(null);
-    const [posts, setPosts] = useState([]);
-    const [selectedPost, setSelectedPost] = useState(null);
-
-    useEffect(() => {
-        fetch(`http://localhost:9000/api/users/${userId}`)
-            .then(response => response.json())
-            .then(data => setUser(data));
-    }, [userId]);
-
-    useEffect(() => {
-        fetch(`http://localhost:9000/api/users/${userId}/posts`)
-            .then(response => response.json())
-            .then(data => setPosts(data));
-    }, [userId]);
-
-    if (!user) {
-        return <div> Loading ...</div>;
-    }
-
-    const handlePostClick = (post) => {
-        setSelectedPost(post);
-    }
-
-    const handleClosePostDetails = () => {
-        setSelectedPost(null);
-    }
-
-    const PostDetails = ({ post }) => {
-        return (
-            <div className="post-details-overlay">
-                <div className="post-details">
-                    <img src={post.image} alt={post.caption}/>
-                    <div className="post-info">
-                        <h2>{post.caption}</h2>
-                        <div className="post-location">{post.location}</div>
-                        <div className="post-time">{post.time}</div>
-                        <button onClick={handleClosePostDetails}>X</button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-    return (
-        <div className="user-profile">
-            <div className="profile-header">
-                <div className="profile-picture-container">
-                    <img src={user.profilePicture} alt={user.name} className="profile-picture"/>
-                </div>
-
-                <div className="profile-info">
-                    <div className="profile-stats">
-                        <strong>{user.postCount}</strong>
-                    </div>
-                </div>
-            </div>
-
-            <div className="post-grid">
-                {posts.map(post => (
-                    <div key={post.id} className="post" onClick={() => handlePostClick(post)}>
-                        <img src={post.image} alt={post.caption} />
-                    </div>
-                ))}
-            </div>
-            {selectedPost && <PostDetails post={selectedPost} onClose={handleClosePostDetails} />}
-        </div>
-
-        
-    )
-}
+export default Profile;
 
