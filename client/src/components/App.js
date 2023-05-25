@@ -6,10 +6,7 @@ import Verify from './Verify';
 import Profile from './Profile';
 import Post from './Post';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-// import InfiniteScroll from 'react-infinite-scroller';
-// import { useInfiniteQuery} from 'react-query';
-// import Navbar from "./navbar";
-// import PostCard from "./postCard";
+
 import Feed from "./Feed";
 
 

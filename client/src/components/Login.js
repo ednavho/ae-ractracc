@@ -24,6 +24,7 @@ export default function Login() {
             localStorage.setItem('jwt_token', loginResponse.data.token);
             setLoggingIn(false);
             navigate('/profile');
+
         } catch (err) {
             if (err.response.status === 403) {
                 alert('User has not verified their email. Please check your email to complete verification.');
