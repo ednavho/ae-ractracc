@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 
 // routes
 router.post('/createUpload', upload.single('image'), createUpload);
-router.get('/getUploads', getUploads);
+router.get('/getUploads', authenticateToken, getUploads);
 router.get('/getFeed', getFeed);
 router.delete('/deleteUpload', deleteUpload);
 

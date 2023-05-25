@@ -38,7 +38,7 @@ const getUploads = async (req, res) => {
         const uploadsData = uploads.map((upload) => 
             ({
                 _id: upload.id,
-                imgpath: upload.imagepath, // backend/media/uploads/userID_postID.png
+                imagepath: upload.imagepath, // backend/media/uploads/userID_postID.png
                 caption: upload.caption,
                 location: upload.location,
             })
@@ -60,7 +60,7 @@ const getFeed = async (req, res) => {
     // for {limit: num}
     try {
         let uploads = await Upload.find({})
-            .sort({ created_at: 0 }) // Sort in ascending order of 'created_at' field
+            .sort({ created_at: -1 }) // Sort in ascending order of 'created_at' field
             .limit(req.limit); // Limit the results to 'limit' number of documents
         const uploadsData = uploads.map((upload) =>
             ({
