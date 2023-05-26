@@ -1,12 +1,13 @@
-
 import InfiniteScroll from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
 import PostCard from "./postCard";
 import Navbar from "./navbar";
+import "../styles/Feed.css";
 
 
 
 function Feed() {
+    
     const fetchPosts = async ({ pageParam = 1 }) => {
         const response = await fetch(`https://picsum.photos/v2/list?page=${pageParam}&limit=10`);
         const results = await response.json();

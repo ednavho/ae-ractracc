@@ -1,6 +1,83 @@
 /* all styling */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap');
 
+.profile {
+    width: 100%;
+
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    min-height: 90vh;
+    margin: 0;
+    padding: 0;
+}
+
+.username {
+    font-weight: bold;
+    font-size: calc(10px + 2vh);
+    width: 100%;
+    padding-left: 15px;
+    height: calc(40px + 2vh);
+    background-color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.post-count {
+    width: 100%;
+    height: calc(40px + 4vh);
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post-count div {
+    font-size: calc(5px + 2vh);
+    padding-left: 15px;
+    width: 100%;
+    height: calc(10px + 2vh);
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.post-sect {
+    border-top: 1px solid white;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+}
+
+.post-block {
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    max-width: calc(494px/3);
+    max-height: calc(494px/3);
+    width: calc(100%/3);
+    aspect-ratio: 1;
+    background-color: white;
+}
+
+.post-block img {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+/* 
 .user-profile {
     max-width: 800px;
     margin: 0 auto;
@@ -94,4 +171,4 @@
 
 .post-details .post-close-btn:hover {
     background-color: #38a1ff;
-}
+} */
