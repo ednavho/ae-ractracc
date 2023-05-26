@@ -1,10 +1,10 @@
-import '../styles/Profile.css';
+import '../styles/UserProfile.css';
 import Menu from './Menu';
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-function Profile() {
+function UserProfile() {
     const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
@@ -63,13 +63,23 @@ function Profile() {
 
     return (
         <div className='profile'>
-            Profile
-            <div>
+            <div className='username'>
                 {user ? user.name : 'loading name...'}
             </div>
-            <div>
+            <div className='post-count'>
+                <div>{posts ? posts.length : 'loading post count...'}</div>
+                <div>Posts</div>
                 
-                {posts.map((post) => { return (< img src={'http://localhost:9000/images/' + post.imagepath} />) }
+            </div>
+            <div className='post-sect'>
+                
+                {posts.map((post) => {
+                    return (
+                        <div className='post-block'>
+                            < img src={'http://localhost:9000/images/' + post.imagepath} />
+                        </div>
+                    )
+                }
                 )}
             </div>
             
@@ -81,5 +91,5 @@ function Profile() {
     );
 };
 
-export default Profile;
+export default UserProfile;
 

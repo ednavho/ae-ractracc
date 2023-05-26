@@ -1,9 +1,11 @@
 * {
-  font-size: 20px;
+  font-size: 0px;
   margin: 0;
   padding: 0;
   background-color: black;
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 body {
