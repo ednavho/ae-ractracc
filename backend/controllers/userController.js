@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
             token: crypto.randomBytes(32).toString('hex'),
         });
         // TODO: change the verify link
-        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttps://taumy-study.onrender.com/verify/${user.id}/${token.token}`;
+        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttp://localhost:9000/verify/${user.id}/${token.token}`;
         await sendEmail(user.email, "Verify Email to use RacTracc!", message);
 
         console.log(message);

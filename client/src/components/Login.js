@@ -1,6 +1,6 @@
 import '../styles/Login.css';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
@@ -23,7 +23,8 @@ export default function Login() {
             const loginResponse = await axios.post('http://localhost:9000/api/users/login', {email, password});
             localStorage.setItem('jwt_token', loginResponse.data.token);
             setLoggingIn(false);
-            navigate('/home');
+            navigate('/userprofile');
+
         } catch (err) {
             if (err.response.status === 403) {
                 alert('User has not verified their email. Please check your email to complete verification.');

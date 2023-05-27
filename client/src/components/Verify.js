@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import '../styles/Verify.css';
 
-export default function Home() {
+export default function Verify() {
   const navigate = useNavigate();
   const params = useParams();
   const [verified, setVerified] = useState(false);
