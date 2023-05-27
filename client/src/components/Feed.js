@@ -3,6 +3,7 @@ import { useInfiniteQuery } from 'react-query';
 import PostCard from "./postCard";
 import Navbar from "./navbar";
 import "../styles/Feed.css";
+import Menu from './Menu';
 
 
 
@@ -21,7 +22,8 @@ function Feed() {
         }
     });
   return ( 
-    <div className="App"> 
+      <div className="App"> 
+    <Menu/>
     <Navbar />
     <main className="main">
     {isLoading ? (
