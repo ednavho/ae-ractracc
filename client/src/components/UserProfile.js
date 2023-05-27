@@ -28,7 +28,7 @@ function UserProfile() {
         });
     }
 
-    useEffect(() => {
+    const loadContent = () => {
         const token = localStorage.getItem('jwt_token');
         if (token) {
           const fetchData = async () => {
@@ -52,14 +52,12 @@ function UserProfile() {
         else {
           navigate('/');
         }
-    }, [navigate]);
+    }
+
+    useEffect(loadContent, [navigate]);
 
     
     
-
-
-
-
 
     return (
         <div className='profile'>

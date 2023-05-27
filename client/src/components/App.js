@@ -18,7 +18,6 @@ function App() {
       <div className='App'>
          <BrowserRouter>
             <>
-               {/* <Title/> */}
                <Routes>
                   <Route exact path='/' element={<Login />} />
                   <Route exact path='/feed' element={<Feed />} />
