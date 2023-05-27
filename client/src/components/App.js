@@ -3,8 +3,14 @@ import Title from './Title';
 import Login from './Login';
 import Register from './Register';
 import Verify from './Verify';
+<<<<<<< HEAD
+import Menu from './Menu';
+import Camera from './Camera';
+
+=======
 import UserProfile from './UserProfile';
 import Post from './Post';
+>>>>>>> main
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 import Feed from "./Feed";
@@ -14,6 +20,18 @@ import Feed from "./Feed";
 import React from 'react';
 
 function App() {
+<<<<<<< HEAD
+  return (
+    <BrowserRouter>
+      <>
+        <Routes>
+        <Route exact path='/' element={< Camera />}></Route>
+        <Route exact path='/register' element={< Register />}></Route>
+        <Route exact path='/verify' element={< Verify />}></Route>
+        </Routes>
+      </>
+    </BrowserRouter>
+=======
    return (
       <div className='App'>
          <BrowserRouter>
@@ -30,6 +48,7 @@ function App() {
          </BrowserRouter>
       </div>
       
+>>>>>>> main
   );
 }
 
