@@ -61,11 +61,11 @@
 }
 
 .post-block {
+    margin: 0 -1px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
     max-width: calc(494px/3);
-    max-height: calc(494px/3);
     width: calc(100%/3);
     aspect-ratio: 1;
     background-color: white;
