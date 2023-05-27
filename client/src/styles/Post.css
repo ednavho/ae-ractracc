@@ -1,3 +1,32 @@
 .upload-cont {
-    
+    width: 100%;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    min-height: 90vh;
+    margin: 0;
+    padding: 0;
+}
+
+.upload-form {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    flex-direction: column;
+}
+
+.upload-form input {
+    font-size: 20px;
+}
+
+.upload-form button {
+    height: 5vh;
+    font-size: 25px;
+    color: white;
 }

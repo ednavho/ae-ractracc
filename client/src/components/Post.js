@@ -77,7 +77,7 @@ function Home() {
   return (
     <div className='upload-cont'>
       Post
-      <form onSubmit={handleFormSubmit}>
+      <form className='upload-form' onSubmit={handleFormSubmit}>
         <input type="file" onChange={handleImageChange} />
         <input placeholder='location' type='text' onChange={handleLocationChange} />
         <input placeholder='caption' type='text' onChange={handleCaptionChange}/>
