@@ -38,5 +38,16 @@ app.use('/api/uploads', uploadRouter);
 // port
 const port = process.env.PORT || 9000;
 
+const path = require("path");
+
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+// Step 2:
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
+
+
+
 // listener
 const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
