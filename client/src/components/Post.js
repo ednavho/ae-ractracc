@@ -1,11 +1,11 @@
 import Menu from './Menu';
 import Webcam from 'react-webcam';
-
 import '../styles/Post.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineClose, AiOutlineCamera } from "react-icons/ai";
 
 function Home() {
   
@@ -15,7 +15,7 @@ function Home() {
   const [caption, setCaption] = useState('');
   const [location, setLocation] = useState('');
   const [image, setImage] = useState(null);
-
+  const [taken, setTaken] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('jwt_token');
@@ -42,28 +42,31 @@ function Home() {
     }
   }, [navigate]);
 
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
   const handleLocationChange = (e) => {
-    
     setLocation(e.target.value);
   };
   const handleCaptionChange = (e) => {
     setCaption(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+    const currentTime = getTimeStamp().toString();
     const formData = new FormData();
     formData.append('userId', id);
-    formData.append('imagepath', image['name']);
     formData.append('caption', caption);
+    formData.append('imagepath', currentTime + ".jpeg");
     formData.append('location', location);
-    formData.append('image', image);
-      
-        
+
+
+    const blob = await fetch(image).then((res) => res.blob());
+    const file = new File([blob], currentTime + ".jpeg", {type: 'image/jpeg'});
+    formData.append('image', file);
+
+    for (let i of formData) {
+      console.log(i);
+    }
+
     axios.post('http://localhost:9000/api/uploads/createUpload', formData)
       .then((response) => {
         console.log(response.data); // Image uploaded successfully
@@ -76,35 +79,57 @@ function Home() {
   };
 
   const webRef = useRef(null);
+
+  /* 
   const videoConstraints = {
       facingMode: {exact:"enviroment"}
   };
+  */
   
   const showImage = () => {
+    setTaken(true);
     setImage(webRef.current.getScreenshot());
-    console.log(webRef.current.getScreenshot());
   };
+  
+  function getTimeStamp() {
+    return Date.now();
+  }
+  const photoRetake = () => {
+    setTaken(false);
+  }
 
   return (
     <div className='upload-cont'>
       Post
       <div className="camera">
-          React Webcam
-          <Webcam ref={webRef} screenshotQuality={0.8} screenshotFormat="image/jpeg" videoConstraints={videoConstraints}/>
-          <button onClick={showImage}>Show Image</button>
-          <br />
-          <img src={image} />
+        <b>Racoon Post</b>
+        {taken ? (
+        <div className = 'screens'>
+        <img src={image}/>
+        <form className='upload-form' onSubmit={handleFormSubmit}>
+          <input placeholder='Location...' type='text' onChange={handleLocationChange} />
+          <input placeholder='Caption...' type='text' onChange={handleCaptionChange}/>
+          <button type="submit">Upload Image</button>
+        </form>
+        <button id='retake' onClick={photoRetake}><AiOutlineClose /></button>
+        </div>
+        )
+        :
+        (
+        <div className = 'screens'>
+          <Webcam ref={webRef} 
+                  screenshotQuality={0.8} 
+                  screenshotFormat="image/jpeg" 
+                  height = {240}
+                  width = {100 + '%'}/>
+          <button id='sc' onClick={showImage}><AiOutlineCamera /></button>
+        </div>
+        )
+        }
       </div>
-      <form className='upload-form' onSubmit={handleFormSubmit}>
-        <input type="file" onChange={handleImageChange} />
-        <input placeholder='location' type='text' onChange={handleLocationChange} />
-        <input placeholder='caption' type='text' onChange={handleCaptionChange}/>
-        <button type="submit">Upload Image</button>
-      </form>
-
       <Menu/>
     </div>
   );
 }
 
-export default Home
+export default Home;

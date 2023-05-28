@@ -1,3 +1,4 @@
+import "../styles/Camera.css";
 import Webcam from "react-webcam";
 import { useRef } from "react";
 
@@ -14,8 +15,8 @@ function Camera() {
     return (
         <div className="Camera">
             React Webcam
-            <Webcam ref={webRef} screenshotQuality={0.8} screenshotFormat="image/jpeg" videoConstraints={videoConstraints}/>
-            <button onClick={showImage}>Show Image</button>
+            <Webcam ref={webRef} screenshotQuality={0.8} screenshotFormat="image/jpeg"/>
+            <button onClick={showImage}>Take Photo</button>
             <br />
             <img src={img} />
         </div>
