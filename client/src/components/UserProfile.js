@@ -3,6 +3,10 @@ import Menu from './Menu';
 import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+//import React, { useState } from 'react';
+import '../styles/PostPopup.css'; // Create a CSS file for the post pop-up styles
+import PostPopup from './PostPopup'
+
 
 function UserProfile() {
     const navigate = useNavigate();
@@ -56,6 +60,15 @@ function UserProfile() {
 
     useEffect(loadContent, [navigate]);
 
+    const [selectedPost, setSelectedPost] = useState(null);
+
+    const openPostPopup = (post) => {
+        setSelectedPost(post);
+      };
+    
+      const closePostPopup = () => {
+        setSelectedPost(null);
+      };
     
     
 
@@ -69,18 +82,32 @@ function UserProfile() {
                 <div>Posts</div>
                 
             </div>
-            <div className='post-sect'>
-                
-                {posts.map((post) => {
-                    return (
-                        <div className='post-block'>
-                            < img src={'http://localhost:9000/images/' + post.imagepath} />
-                        </div>
-                    )
-                }
-                )}
+            <div className='post-sect'>    
+                {posts.map((post) => (
+                    <div className="post-block" key={post.id}>
+                        <img
+                        src={'http://localhost:9000/images/' + post.imagepath}
+                        alt="Post"
+                        onClick={() => openPostPopup(post)} // Add click event to open the post pop-up
+                        />
+                    </div>
+                ))}
             </div>
-            
+            {selectedPost && (
+         //   <PostPopup post={selectedPost} onClose={closePostPopup} />
+                <div className='post-popup'>
+                    <div className='post-popup-content'>
+                        <img
+                            src={`http://localhost:9000/images/${selectedPost.imagepath}`}
+                            alt='Post'
+                        />
+                        <button className='close-button' onClick={closePostPopup}>
+                            Close
+                        </button>
+                    </div>
+                </div>
+            )}
+
 
             <Menu/>
         
