@@ -155,10 +155,24 @@ const getWho = async (req, res) => {
     
 }
 
+// api/users/getUsername
+const getUsername = async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        return res.status(200).json({username: user.name});
+    } catch (err) {
+        return res.status(404).json({
+            message: 'Error fetching users',
+            error: err
+        });
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
     verifyToken,
     getEveryone,
-    getWho
+    getWho,
+    getUsername,
 }

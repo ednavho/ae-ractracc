@@ -1,3 +1,4 @@
+
 const jwt = require('jsonwebtoken');
 const Upload = require('../models/uploadModel');
 const User = require('../models/userModel');
@@ -18,7 +19,6 @@ const createUpload = async (req, res) => {
             caption: caption,
             location: location,
         });
-        console.log('createUpload()' + upload);
         return res.status(201).json({ upload });
     } catch (err) {
         return res.status(400).json({
@@ -32,19 +32,18 @@ const createUpload = async (req, res) => {
 // @route   GET api/uploads/getUploads
 const getUploads = async (req, res) => {
     try {
-        console.log(req);
         let uploads = await Upload.find({ userId: req.user._id })
             .sort({ created_at: -1 }); // Sort in descending order of 'created_at' field
             //.limit(req.limit); // Limit the results to 'limit' number of documents
         const uploadsData = uploads.map((upload) => 
             ({
                 _id: upload.id,
+                userId: upload.userId,
                 imagepath: upload.imagepath, // backend/media/uploads/userID_postID.png
                 caption: upload.caption,
                 location: upload.location,
             })
         );
-        console.log('getUploads()' + uploadsData);
         return res.status(200).json(uploadsData);
 
     } catch (err) {
@@ -66,12 +65,12 @@ const getFeed = async (req, res) => {
         let uploadsData = uploads.map((upload) =>
             ({
                 _id: upload.id,
+                userId: upload.userId,
                 imagepath: upload.imagepath,
                 caption: upload.caption,
                 location: upload.location,
             })
         );
-        console.log(uploadsData);
         return res.status(200).json(uploadsData);
         
     } catch (err) {
@@ -81,6 +80,21 @@ const getFeed = async (req, res) => {
         });
     }
 }
+
+const getCount = async (req, res) => {
+    try {
+        const count = await Upload.countDocuments();
+        
+        return res.status(200).json({count : count});
+        
+    } catch (err) {
+        return res.status(404).json({
+            message: 'Error fetching feed',
+            error: err
+        });
+    }
+}
+
 
 
 // @desc    Delete study session
@@ -115,5 +129,6 @@ module.exports = {
     createUpload,
     getUploads,
     getFeed,
+    getCount,
     deleteUpload
 }

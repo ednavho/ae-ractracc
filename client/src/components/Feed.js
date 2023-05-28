@@ -1,14 +1,15 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
 import PostCard from "./PostCard";
-import Navbar from "./navbar";
 import "../styles/Feed.css";
 import Menu from './Menu';
+import Title from './Title';
 import axios from 'axios';
 
 
 
 function Feed() {
+
     
     const fetchPosts = async ({ pageParam = 1 }) => {
         let results = null;
@@ -26,7 +27,17 @@ function Feed() {
             console.error(error);
         }); 
 
-        return { results, nextPage: pageParam + 1, totalPages: 10 }
+        let cnt = 0;
+        await axios.get('http://localhost:9000/api/uploads/getCount')
+        .then((response) => {
+            cnt = response.data.count;
+            console.log(cnt);
+        })
+        .catch((error) => {
+            console.error(error);
+        }); 
+
+        return { results, nextPage: pageParam + 1, totalPages: Math.floor(cnt/10) }
     }; 
     
         const { data, isLoading, isError, hasNextPage, fetchNextPage } = useInfiniteQuery("posts", fetchPosts, { getNextPageParam: (lastPage, pages) => {
@@ -35,21 +46,25 @@ function Feed() {
             return undefined;
             }
         });
-      return ( 
-        <div className="feed-cont"> 
-        {isLoading ? (
-            <p>Loading...</p>
-        ) : isError ? (
-            <p>There was an error</p>
-        ) : ( 
-            <InfiniteScroll className='ifs' hasMore={hasNextPage} loadMore={fetchNextPage}>
-                {data.pages.map((page) =>
-                    page.results.map((post) => <PostCard post={post} />)
-                )}
-            </InfiniteScroll>
-        )}
-    
-        </div>
+    return ( 
+        <div className='feed-cont'>
+            <Title/>
+            <div className='feed'> 
+                {isLoading ? (
+                    <p>Loading...</p>
+                ) : isError ? (
+                    <p>Error</p>
+                ) : ( 
+                    <InfiniteScroll className='infinite-scroll' hasMore={hasNextPage} loadMore={fetchNextPage}>
+                        {data.pages.map((page) =>
+                            page.results.map((post) => <PostCard key={post._id} post={post} />)
+                        )}
+                    </InfiniteScroll>
+                )}
+            </div>
+            <Menu/>
+        </div>
+        
       )
     }
     

@@ -1,24 +1,25 @@
-.feed-main {
-  width: 40%;
-  margin: auto;
-  padding: 10px;
+.feed-cont {
+  margin-top: 75px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.feed-cont {
-width: 60vw;
-display: flex;
+.feed {
+  width: 100%;
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
 
-.ifs {
-    width: 60vw;
+.infinite-scroll {
+    width: 100%;
 
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
 } 
 
-.ReactQueryDevtools{
- display: none;
-}
+

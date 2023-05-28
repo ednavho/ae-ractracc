@@ -3,7 +3,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 70%;
+  max-height: 70vh;
+  background-color: transparent;
 }
 
 .popup-bg {
@@ -12,48 +14,78 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: black;
+  opacity: .8;
 }
 
 .post-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .post-popup-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .image-container {
-    width: 50%;
-    aspect-ratio: 1;
-  }
+.popup-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white
+}
+
+.popup-card .location {
+  width: 95%;
+  height: 15%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  font-size: 25px;
+  margin: 10px 0;
+  background-color: white;
+  color: black;
+}
   
-  .image-container img {
-    background-color: white;
-    width: 100%;
-  }
+.popup-card .image-container {
+  width: 95%;
+  aspect-ratio: 1;
+}
+
+.popup-card .caption {
+  width: 95%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  font-size: 20px;
+  margin: 10px 0;
+  background-color: white;
+  color: black;
+}
+
+.image-container img {
+  background-color: white;
+  width: 100%;
+}
+
+.close-icon {
+  position: absolute;
+  width: 25px;
+  top: 15px;
+  left: 15px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
   
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
+.close-icon img {
+  width: 100%;
+}
