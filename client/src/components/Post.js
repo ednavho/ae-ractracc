@@ -101,7 +101,7 @@ function Home() {
     <div className='upload-cont'>
       Post
       <div className="camera">
-        <b>Racoon Post</b>
+        <b>Raccoon Post</b>
         {taken ? (
         <div className = 'screens'>
         <img src={image}/>
