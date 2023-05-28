@@ -29,7 +29,7 @@ function App() {
                   <Route exact path='/post' element={<Post />} />
                   <Route exact path='/userprofile' element={<UserProfile />} />
                   <Route exact path='/camera' element={< Camera />}></Route>
-                  <Route exact path='/verify' element={<Verify />} />
+                  <Route path='/verify/:id/:token' element={<Verify />} />
                </Routes>
             </>
          </BrowserRouter>

@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
             token: crypto.randomBytes(32).toString('hex'),
         });
         // TODO: change the verify link
-        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttp://localhost:9000/verify/${user.id}/${token.token}`;
+        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttp://localhost:3000/verify/${user.id}/${token.token}`;
         await sendEmail(user.email, "Verify Email to use RacTracc!", message);
 
         console.log(message);
@@ -91,7 +91,9 @@ const loginUser = async (req, res) => {
 
 const verifyToken = async (req, res) => {
     try {
+        console.log(req.body);
         const user = await User.findOne({ _id: req.body.id });
+        console.log(user);
         if (!user) {
             return res.status(400).json({
                 message: "Invalid link",
@@ -103,6 +105,8 @@ const verifyToken = async (req, res) => {
             userId: user._id,
             token: req.body.token,
         });
+
+        console.log(token);
         if (!token) {
             return res.status(400).json({
                 message: "Invalid link",
