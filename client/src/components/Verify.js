@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import '../styles/Verify.css';
 
-export default function Verify() {
+function Verify() {
   const navigate = useNavigate();
   const params = useParams();
   const [verified, setVerified] = useState(false);
@@ -12,8 +12,8 @@ export default function Verify() {
   useEffect(() => {
     const validateUser = async () => {
       try {
-        console.log(params);
-        const validate = await axios.post('http://localhost:9000/api/users/verify', { id: params.id, token: params.token });
+        console.log(params.id);
+        await axios.post('http://localhost:9000/api/users/verify', { id: params.id, token: params.token });
         setVerified(true);
       } catch (err) {
         alert('Invalid link, navigating to login page.');
@@ -26,7 +26,7 @@ export default function Verify() {
 
   if (!verified) {
     return(
-      <div>
+      <div className='verify-load'>
         <div>
           Loading...
         </div>
@@ -35,13 +35,14 @@ export default function Verify() {
   }
 
   return (
-    <div>
-      <div >
-        <div>
-          <h1>You have successfully verified your email! Click below to return to the login screen:</h1>
-        </div>
-        <h3 onClick={() => navigate('/')}>Return to login page</h3>
+    <div className='verify-cont'>
+      <div className='verify'>
+        <h1>You have successfully verified your email! </h1>
+        <h1>Click below to return to the login screen:</h1>
+        <h3 onClick={() => navigate('/verify')}>Return to login page</h3>
       </div>
     </div>
   )
 }
+
+export default Verify;
