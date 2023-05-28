@@ -18,7 +18,7 @@ const createUpload = async (req, res) => {
             caption: caption,
             location: location,
         });
-        console.log(upload);
+        console.log('createUpload()' + upload);
         return res.status(201).json({ upload });
     } catch (err) {
         return res.status(400).json({
@@ -32,6 +32,7 @@ const createUpload = async (req, res) => {
 // @route   GET api/uploads/getUploads
 const getUploads = async (req, res) => {
     try {
+        console.log(req);
         let uploads = await Upload.find({ userId: req.user._id })
             .sort({ created_at: -1 }); // Sort in descending order of 'created_at' field
             //.limit(req.limit); // Limit the results to 'limit' number of documents
@@ -43,7 +44,7 @@ const getUploads = async (req, res) => {
                 location: upload.location,
             })
         );
-        console.log(uploadsData);
+        console.log('getUploads()' + uploadsData);
         return res.status(200).json(uploadsData);
 
     } catch (err) {
@@ -57,12 +58,12 @@ const getUploads = async (req, res) => {
 // @desc    Get feed posts for logged in user (for web app)
 // @route   GET api/uploads/getFeed
 const getFeed = async (req, res) => {
-    // for {limit: num}
     try {
         let uploads = await Upload.find({})
-            .sort({ created_at: -1 }) // Sort in ascending order of 'created_at' field
-            .limit(req.limit); // Limit the results to 'limit' number of documents
-        const uploadsData = uploads.map((upload) =>
+            .skip((req.page - 1) * req.limit)
+            .limit(req.limit) // Limit the results to 'limit' number of documents
+            .sort({ createdAt: -1 }); // Sort in ascending order of 'created_at'
+        let uploadsData = uploads.map((upload) =>
             ({
                 _id: upload.id,
                 imagepath: upload.imagepath,
@@ -70,8 +71,8 @@ const getFeed = async (req, res) => {
                 location: upload.location,
             })
         );
-        console.log(uploadsData.reverse());
-        return res.status(200).json(uploadsData.reserve());
+        console.log(uploadsData);
+        return res.status(200).json(uploadsData);
         
     } catch (err) {
         return res.status(404).json({

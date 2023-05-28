@@ -1,0 +1,48 @@
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 1.5rem;
+
+}
+  
+.post-card .post-top {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    color: white;
+}
+
+.post-card .post-top .user {
+    background-color: black;
+    color: wheat;
+    font-size: 50px;
+}
+
+.post-card .post-top .location {
+background: #fafafa;
+padding: 0.5rem;
+}
+
+.post-card img { 
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background-color: white;
+}
+
+.post-card .caption {
+    background-color: black;
+    color: wheat;
+    font-size: 50px;
+}
+
+  .ReactQueryDevtools{
+   display: none;
+  }
+  

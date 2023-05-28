@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
 //import React, { useState } from 'react';
-import '../styles/PostPopup.css'; // Create a CSS file for the post pop-up styles
+//import '../styles/PostPopup.css'; // Create a CSS file for the post pop-up styles
 import PostPopup from './PostPopup'
 
 
@@ -94,18 +94,7 @@ function UserProfile() {
                 ))}
             </div>
             {selectedPost && (
-         //   <PostPopup post={selectedPost} onClose={closePostPopup} />
-                <div className='post-popup'>
-                    <div className='post-popup-content'>
-                        <img
-                            src={`http://localhost:9000/images/${selectedPost.imagepath}`}
-                            alt='Post'
-                        />
-                        <button className='close-button' onClick={closePostPopup}>
-                            Close
-                        </button>
-                    </div>
-                </div>
+                <PostPopup post={selectedPost} onClose={closePostPopup} />
             )}
 
 
