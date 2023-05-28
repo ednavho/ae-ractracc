@@ -3,7 +3,6 @@ import Title from './Title';
 import Login from './Login';
 import Register from './Register';
 import Verify from './Verify';
-
 import Menu from './Menu';
 import Camera from './Camera';
 import UserProfile from './UserProfile';
