@@ -4,7 +4,7 @@ const multer = require("multer");
 
 
 // controllers
-const { createUpload, getUploads, getFeed, deleteUpload } = require('../controllers/uploadController');
+const { createUpload, getUploads, getFeed, getCount, deleteUpload } = require('../controllers/uploadController');
 
 // middleware
 const { authenticateToken } = require('../middleware/userAuth');
@@ -25,6 +25,7 @@ const upload = multer({ storage: storage });
 router.post('/createUpload', upload.single('image'), createUpload);
 router.get('/getUploads', authenticateToken, getUploads);
 router.get('/getFeed', getFeed);
+router.get('/getCount', getCount);
 router.delete('/deleteUpload', deleteUpload);
 
 

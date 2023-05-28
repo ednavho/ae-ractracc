@@ -1,13 +1,14 @@
 .title {
-    padding: 10px 0 10px 0;
-    height: 10vh;
-    width: 100vw;
+    height: 70px;
+    width: 90%;
     background-color: transparent;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
+    justify-content: flex-start;
+    background-color: white;
+    color: black;
     font-size: calc(20px + 2vw);
     font-weight: bold;
-
+    position: fixed;
+    top: 0;
 }

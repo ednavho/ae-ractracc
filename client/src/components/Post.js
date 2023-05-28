@@ -1,9 +1,9 @@
 import Menu from './Menu';
-import Webcam from "react-webcam";
+import Webcam from 'react-webcam';
 import '../styles/Post.css';
 import React, { useEffect, useRef } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineCamera } from "react-icons/ai";
 
@@ -79,6 +79,7 @@ function Home() {
   };
 
   const webRef = useRef(null);
+
   /* 
   const videoConstraints = {
       facingMode: {exact:"enviroment"}

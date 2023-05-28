@@ -8,7 +8,6 @@ const uploadSchema = new mongoose.Schema(
             required: true,
             ref: 'User',
         },
-        // userId: { type: String, required: true },
         imagepath: { type: String, required: true }, 
         caption: {type: String, required: true },
         location: { type: String, required: true }, // city, state, country? coordinates?
