@@ -1,5 +1,6 @@
 .title {
     padding: 10px 0 10px 0;
+    height: 10vh;
     width: 100vw;
     background-color: transparent;
     display: flex;

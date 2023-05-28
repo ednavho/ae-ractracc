@@ -8,7 +8,7 @@ function Menu() {
       <Link className='category' to='/feed'>
         <div className='cat-text'>Feed</div>
       </Link>
-      <Link className='category' to='/profile'>
+      <Link className='category' to='/userprofile'>
         <div className='cat-text'>Profile</div>
       </Link>
       <Link className='category' to='/post'>
