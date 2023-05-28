@@ -28,7 +28,7 @@ function App() {
                   <Route exact path='/register' element={<Register />} />
                   <Route exact path='/post' element={<Post />} />
                   <Route exact path='/userprofile' element={<UserProfile />} />
-                  <Route exact path='/camera' element={< Camera />}></Route>
+                  <Route exact path='/camera' element={<Camera />} />
                   <Route exact path='/verify' element={<Verify />} />
                </Routes>
             </>
