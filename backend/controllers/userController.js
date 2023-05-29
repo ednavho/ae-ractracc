@@ -8,7 +8,7 @@ require("dotenv").config();
 // @desc    Create new user in db
 // @route   POST /register
 const registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, username, email, password } = req.body;
     const lowerCaseEmail = email.toLowerCase();
 
     const userExists = await User.findOne({ email: lowerCaseEmail });
@@ -19,9 +19,18 @@ const registerUser = async (req, res) => {
         })
     }
 
+    const usernameExists = await User.findOne({ username: username });
+    if (usernameExists) {
+        return res.status(400).json({
+            message: 'Username already taken. Please choose a different one.',
+            error: true
+        })
+    }
+
     try {
         const user = await User.create({
             name,
+            username,
             email: lowerCaseEmail,
             password,
         });
@@ -29,7 +38,7 @@ const registerUser = async (req, res) => {
             userId: user._id,
             token: crypto.randomBytes(32).toString('hex'),
         });
-        // TODO: change the verify link
+
         const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttp://localhost:3000/verify/${user.id}/${token.token}`;
         await sendEmail(user.email, "Verify Email to use RacTracc!", message);
 
@@ -38,6 +47,7 @@ const registerUser = async (req, res) => {
         return res.status(201).json({
             _id: user.id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: token.token,
         });
@@ -76,6 +86,7 @@ const loginUser = async (req, res) => {
         return res.status(201).json({
             _id: user.id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: token,
         });
@@ -120,6 +131,7 @@ const verifyToken = async (req, res) => {
         return res.status(200).json({
             _id: user.id,
             name: user.name,
+            username: user.username,
             email: user.email,
             verified: true
         });
@@ -130,6 +142,23 @@ const verifyToken = async (req, res) => {
         })
     }
 };
+
+const forgotPassword = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            email: req.body.email
+        });
+
+        const message = `Hi ${user.name},\n\nHere is your requested password information.\n\n${user.password}`;
+        await sendEmail(user.email, "Forgot Password", message);
+        return res.status(200).json({ email: user.email });
+    } catch (err) {
+        return res.status(400).json({
+            message: 'Could not find user',
+            error: err
+        })
+    }
+}
 
 // @desc    Obtains all registered users in database (for Pi use)
 // @route   GET /everyone
@@ -163,7 +192,7 @@ const getWho = async (req, res) => {
 const getUsername = async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.params.id });
-        return res.status(200).json({username: user.name});
+        return res.status(200).json({username: user.username});
     } catch (err) {
         return res.status(404).json({
             message: 'Error fetching users',
@@ -176,6 +205,7 @@ module.exports = {
     registerUser,
     loginUser,
     verifyToken,
+    forgotPassword,
     getEveryone,
     getWho,
     getUsername,

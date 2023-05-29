@@ -73,7 +73,7 @@ function UserProfile() {
                         {user ? user.name : 'loading name...'}
                     </div>
                     <div className='username'>
-                        {false ? user.username : 'username'}
+                        {user ? user.username : 'username'}
                     </div>
                     <div className='post-count'>
                         <div>{posts ? posts.length : 'loading post count...'} Sightings</div>
