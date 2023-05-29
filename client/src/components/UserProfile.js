@@ -80,7 +80,7 @@ function UserProfile() {
                     {posts.map((post) => (
                         <div className="post-block" key={post.id}>
                             <img
-                            src={'http://localhost:9000/images/' + post.imagepath}
+                            src={'https://racctracc.herokuapp.com/images/' + post.imagepath}
                             alt="Post"
                             onClick={() => openPostPopup(post)} // Add click event to open the post pop-up
                             />
