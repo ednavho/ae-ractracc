@@ -18,8 +18,4 @@ function Menu() {
   )
 }
 
-export default Menu
-
-{/* <Link className='header-itm' to='/'>
-                <div className='link'>Home</div>
-            </Link> */}
+export default Menu;

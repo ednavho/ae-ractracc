@@ -10,7 +10,7 @@ const PostCard = ({ post }) => {
 
    useEffect(() => {
       const getUser = async () => {
-         await axios.get(`http://localhost:9000/api/users/getUsername/${post.userId}`)
+         await axios.get(`https://racctracc.herokuapp.com/api/users/getUsername/${post.userId}`)
             .then((response) => {
                setUsername(response.data.username);
             })
@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
             <div className='location'>{post.location}</div>
          </div>
 
-         <img src={'http://localhost:9000/images/' + post.imagepath} alt='img' />
+         <img src={'https://racctracc.herokuapp.com/images/' + post.imagepath} alt='img' />
 
          <div className='caption'>{ post.caption }</div>
       </div>

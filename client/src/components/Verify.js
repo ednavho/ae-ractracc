@@ -12,17 +12,15 @@ function Verify() {
   useEffect(() => {
     const validateUser = async () => {
       try {
-        console.log(params.id);
-        await axios.post('http://localhost:9000/api/users/verify', { id: params.id, token: params.token });
+        await axios.post('https://racctracc.herokuapp.com/api/users/verify', { id: params.id, token: params.token });
         setVerified(true);
       } catch (err) {
         alert('Invalid link, navigating to login page.');
-        console.log(err);
         navigate('/');
       }
     }
     validateUser();
-  }, [navigate]);
+  }, [navigate, params.id, params.token]);
 
   if (!verified) {
     return(

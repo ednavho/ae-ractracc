@@ -25,8 +25,8 @@ app.use(cors({ origin: true, credentials: true }));
 
 
 // routes
-const userRouter = require('./routes/userRoutes');
-const uploadRouter = require('./routes/uploadRoutes');
+const userRouter = require('./backend/routes/userRoutes');
+const uploadRouter = require('./backend/routes/uploadRoutes');
 app.use('/api/users', userRouter);
 app.use('/api/uploads', uploadRouter);
 

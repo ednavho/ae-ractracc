@@ -67,7 +67,7 @@ function Home() {
       console.log(i);
     }
 
-    axios.post('http://localhost:9000/api/uploads/createUpload', formData)
+    axios.post('https://racctracc.herokuapp.com/api/uploads/createUpload', formData)
       .then((response) => {
         console.log(response.data); // Image uploaded successfully
         // Handle any additional logic or UI updates
@@ -105,7 +105,7 @@ function Home() {
         <b>Racoon Post</b>
         {taken ? (
         <div className = 'screens'>
-        <img src={image}/>
+        <img src={image} alt='userphoto'/>
         <form className='upload-form' onSubmit={handleFormSubmit}>
           <input placeholder='Location...' type='text' onChange={handleLocationChange} />
           <input placeholder='Caption...' type='text' onChange={handleCaptionChange}/>

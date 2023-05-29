@@ -13,7 +13,7 @@ const PostPopup = ({ post, onClose }) => {
           <div className='location'>{post.location}</div>
           
           <div className='image-container'>
-            <img src={'http://localhost:9000/images/' + post.imagepath} alt="Post" />
+            <img src={'https://racctracc.herokuapp.com/images/' + post.imagepath} alt="Post" />
           </div>
 
           <div className='caption'>{post.caption}</div>

@@ -19,13 +19,13 @@ function UserProfile() {
             const token = localStorage.getItem('jwt_token');
             if (token) {
                 try {
-                    const fetchUser = await axios.get('http://localhost:9000/api/users/whoami', {
+                    const fetchUser = await axios.get('https://racctracc.herokuapp.com/api/users/whoami', {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
                         }
                     });
                     setUser(fetchUser.data);
-                    await axios.get('http://localhost:9000/api/uploads/getUploads', {
+                    await axios.get('https://racctracc.herokuapp.com/api/uploads/getUploads', {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
                         }

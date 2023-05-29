@@ -36,7 +36,7 @@ export default function Register() {
         console.log(`Registering user with name: ${name}, with email: ${email} and password: ${password}`);
 
         try {
-            const registerResponse = await axios.post("http://localhost:9000/api/users/register", {name, email, password});
+            const registerResponse = await axios.post("https://racctracc.herokuapp.com/api/users/register", {name, email, password});
             alert('User created! Check your email for an email verification link to activate your account.');
             setRegistering(false);
             console.log(registerResponse);

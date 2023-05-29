@@ -1,10 +1,7 @@
 import '../styles/App.css';
-import Title from './Title';
 import Login from './Login';
 import Register from './Register';
 import Verify from './Verify';
-import Menu from './Menu';
-import Camera from './Camera';
 import UserProfile from './UserProfile';
 import Post from './Post';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -27,7 +24,6 @@ function App() {
                   <Route exact path='/register' element={<Register />} />
                   <Route exact path='/post' element={<Post />} />
                   <Route exact path='/userprofile' element={<UserProfile />} />
-                  <Route exact path='/camera' element={< Camera />}></Route>
                   <Route path='/verify/:id/:token' element={<Verify />} />
                </Routes>
             </>
