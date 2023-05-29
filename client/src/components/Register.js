@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import RegImg from '../media/registertitle.png'
 
 import '../styles/Register.css';
 
@@ -54,25 +55,24 @@ export default function Register() {
     return (
         <div className="bg-container">
             <div className="register-container">
-                <h1>Create An Account</h1>
+                <img src={RegImg} alt="Create An Account" />
                 
                 <div className="input-field">
-                    {/* <h3 className="field-label">Name</h3> */}
-                    <input placeholder="Name" type="text" id="name" className="form-field" value={name} onChange={(event) => setName(event.target.value)}></input>
+                    <input placeholder="Name" type="text" id="name" value={name} onChange={(event) => setName(event.target.value)}></input>
                 </div>
 
                 <div className="input-field">
-                    {/* <h3 className="field-label">Email</h3> */}
-                    <input placeholder="Email" type="text" id="email" className="form-field" value={email} onChange={(event) => setEmail(event.target.value)}></input>
+                    <input placeholder="Email" type="text" id="email" value={email} onChange={(event) => setEmail(event.target.value)}></input>
                 </div>
 
                 <div className="input-field">
-                    {/* <h3 className="field-label">Password</h3> */}
-                    <input placeholder="Password" type="text" id="password" className="form-field" value={password} onChange={(event) => setPassword(event.target.value)}></input>
+                    <input placeholder="Password" type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)}></input>
                 </div>
 
-                <button className="btn" type="submit" onClick={handleRegister}>Register</button>
-                <h3 className="footer" onClick={() => navigate('/')}>Login with existing account</h3>
+                <div className="footer" onClick={() => navigate('/login')}>Already a Tracker? Sign In</div>
+
+                <button type="submit" onClick={handleRegister}>Register</button>
+
             </div>
         </div>
     )

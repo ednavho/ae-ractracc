@@ -3,29 +3,19 @@
 
 
 .bg-container-log {
-    width: 100%;
+    width: 100vw;
+    max-width: 500px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #545050;
-}
-
-.loading-log {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.loading-log img {
-    width: 30px;
-    height: 30px;
+    background-color: #E2CDB5;
 }
 
 .login-container-log {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,35 +23,21 @@
     background-color: transparent;
 }
 
-.login-container-log h1 {
-    font-size: 32px;
-    color: #5DA3D3;
+.login-container-log img {
+    width: 100%;
     background-color: transparent;
 }
-
-/* end all styling */
-
-/* .login-container .header {
-    font-size: 44px;
-    font-weight: 400;
-    text-align: center;
-    margin: 0px 0px 10vh 0px;
-} */
 
 .input-field-log {
     background-color: transparent;
-    width: 65%;
+    width: 90%;
     margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: center;
 }
 
-.input-field-log .field-label-log {
-    font-size: 26px;
-    font-weight: 400;
-    margin: 5px 0px 5px 0px;
-}
-
-.input-field-log .form-field-log {
-    width: 100%;
+.input-field-log input {
+    width: 90%;
     height: 46px;
     background-color: white;
     border-radius: 15px;
@@ -70,38 +46,33 @@
     align-items: center;
     font-size: 22px;
     font-weight: 400;
-    padding: 0px 0px 0px 10px;
     color: black;
 }
 
+
+.login-container-log .options-log {
+    background-color: transparent;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #36251D;
+}
+
+.footer-log {
+    font-size: 15px;
+}
+
 .login-container-log .btn-log {
-    width: 150px;
-    height: 55px;
+    width: 181px;
+    height: 57px;
     margin: 5vh 0px 0px 0px;
-    background-color: #5DA3D3;
-    border-radius: 15px;
+    background-color: #656d4a;
+    border-radius: 64px;
     border-style: none;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
+    font-size: 35px;
+    color: #E9dbce;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.login-container-log .btn-log:hover {
-    background-color: #5DA3D3;
-}
-
-.login-container-log .footer-log {
-    font-size: 22px;
-    font-weight: 400;
-    text-align: center;
-    background-color: transparent;
-    color: #FFFFFF;
-    margin: 10vh 0px 0px 0px;
-}
-
-.login-container-log .footer-log:hover {
-    color: #26446E;
 }

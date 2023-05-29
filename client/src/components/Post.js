@@ -22,7 +22,7 @@ function Home() {
     if (token) {
       const fetchData = async () => {
         try {
-          const fetchUser = await axios.get('http://localhost:9000/api/users/whoami', {
+          const fetchUser = await axios.get('https://racctracc.herokuapp.com/api/users/whoami', {
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
             }
