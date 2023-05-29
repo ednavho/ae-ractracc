@@ -39,8 +39,6 @@ export default function Login() {
     }
 
 
-// # 545050 # D9D9D9 # 5DA3D3 # 9A8F8F
-
     return (
         <div className="bg-container-log">
             <div className='login-container-log'>
@@ -58,7 +56,7 @@ export default function Login() {
 
                 <div className='options-log'>
                     <div className="footer-log" onClick={() => navigate('/register')}>Don't have an account?</div>
-                    <div className="footer-log" onClick={() => navigate('/login')}>Forgot Password?</div>
+                    <div className="footer-log" onClick={() => navigate('/forgot')}>Forgot Password?</div>
                 </div>
 
                 <button className="btn-log" type="submit" onClick={handleLogin}>Login</button>

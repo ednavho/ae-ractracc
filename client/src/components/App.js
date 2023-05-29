@@ -4,6 +4,7 @@ import Register from './Register';
 import Verify from './Verify';
 import UserProfile from './UserProfile';
 import Safety from './Safety';
+import Forgot from './Forgot';
 import Post from './Post';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function App() {
                <Routes>
                   <Route exact path='/' element={<Loadscreen />} />
                   <Route exact path='/login' element={<Login />} />
+                  <Route exact path='/forgot' element={<Forgot />} />
                   <Route exact path='/feed' element={<Feed />} />
                   <Route exact path='/register' element={<Register />} />
                   <Route exact path='/post' element={<Post />} />
