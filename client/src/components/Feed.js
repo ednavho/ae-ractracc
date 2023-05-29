@@ -1,6 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
-import PostCard from "./postCard";
+
+import PostCard from "./PostCard";
 import "../styles/Feed.css";
 import Menu from './Menu';
 import Title from './Title';

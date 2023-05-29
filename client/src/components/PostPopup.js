@@ -4,9 +4,6 @@ import exitImg from '../media/exit.png';
 const PostPopup = ({ post, onClose }) => {
   return (
     <div className='popup-cont'> 
-      <div className='popup-bg'>
-      </div>
-
       <div className="post-popup">
 
         <div className='popup-card'>

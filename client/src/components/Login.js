@@ -3,6 +3,7 @@ import '../styles/Login.css';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import TitleImg from '../media/logintitle.png';
 
 
 export default function Login() {
@@ -43,23 +44,25 @@ export default function Login() {
     return (
         <div className="bg-container-log">
             <div className='login-container-log'>
-                <h1>Welcome, Tracker</h1>
+                <img src={TitleImg} alt="Welcom Tracker" />
 
                 <div className="input-field-log">
-                    {/* <h3 className="field-label-log">Email</h3> */}
-                    <input placeholder='Email' type="text" id="email" className="form-field-log" value={email}
+                    <input placeholder='Email' type="text" id="email" value={email}
                         onChange={(event) => setEmail(event.target.value)}></input>
                 </div>
 
                 <div className="input-field-log">
-                    {/* <h3 className="field-label-log">Password</h3> */}
-                    <input placeholder='Password' type="password" id="password" className="form-field-log" value={password}
+                    <input placeholder='Password' type="password" id="password" value={password}
                         onChange={(event) => setPassword(event.target.value)}></input>
+                </div>
+
+                <div className='options-log'>
+                    <div className="footer-log" onClick={() => navigate('/register')}>Don't have an account?</div>
+                    <div className="footer-log" onClick={() => navigate('/login')}>Forgot Password?</div>
                 </div>
 
                 <button className="btn-log" type="submit" onClick={handleLogin}>Login</button>
 
-                <h3 className="footer-log" onClick={() => navigate('/register')}>Don't have an account?</h3>
 
             </div>
         </div>

@@ -68,14 +68,19 @@ function UserProfile() {
     return (
         <div className='profile-cont'>
             <div className='profile'>
-                <div className='username'>
-                    {user ? user.name : 'loading name...'}
+                <div className='info'>
+                    <div className='name'>
+                        {user ? user.name : 'loading name...'}
+                    </div>
+                    <div className='username'>
+                        {false ? user.username : 'username'}
+                    </div>
+                    <div className='post-count'>
+                        <div>{posts ? posts.length : 'loading post count...'} Sightings</div>
+                        
+                    </div>
                 </div>
-                <div className='post-count'>
-                    <div>{posts ? posts.length : 'loading post count...'}</div>
-                    <div>Posts</div>
-                    
-                </div>
+                
                 <div className='post-sect'>    
                     {posts.map((post) => (
                         <div className="post-block" key={post.id}>
