@@ -6,6 +6,7 @@ import { useState } from 'react';
 const PostCard = ({ post }) => {
 
    const [username, setUsername] = useState('User');
+   const [image, setImage] = useState('');
 
 
    useEffect(() => {
@@ -21,6 +22,20 @@ const PostCard = ({ post }) => {
       getUser();
    }, [post.userId]);
 
+   useEffect(() => {
+      const getImg = async (path) => {
+          console.log('Loading Images...');
+          try {
+              let response = await axios.get('https://racctracc.herokuapp.com/api/uploads/getImage', { headers: { imagepath: path } });
+               setImage(response.data);
+          } catch (err) {
+              console.error(err);
+              return null;
+          }
+      }
+      getImg(post.imagepath);
+  }, [post, username], 3600);
+
    return (
       <div className="post-card">
 
@@ -29,7 +44,7 @@ const PostCard = ({ post }) => {
             <div className='location'>{post.location}</div>
          </div>
 
-         <img src={'https://racctracc.herokuapp.com/images/' + post.imagepath} alt='img' />
+         <img src={image} alt='img' />
 
          <div className='caption'>{ post.caption }</div>
       </div>
