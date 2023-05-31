@@ -1,7 +1,7 @@
 import InfiniteScroll from 'react-infinite-scroller';
 import { useInfiniteQuery } from 'react-query';
 
-
+import Card from './Card';
 import "../styles/Feed.css";
 import Menu from './Menu';
 import Title from './Title';
