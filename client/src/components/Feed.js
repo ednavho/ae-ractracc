@@ -14,7 +14,7 @@ function Feed() {
     
     const fetchPosts = async ({ pageParam = 1 }) => {
         let results = null;
-        await axios.get('http://localhost:9000/api/uploads/getFeed', {
+        await axios.get('https://racctracc.herokuapp.com/api/uploads/getFeed', {
             headers: {
                 'page': pageParam,
                 'limit': 10
@@ -29,7 +29,7 @@ function Feed() {
         }); 
 
         let cnt = 0;
-        await axios.get('http://localhost:9000/api/uploads/getCount')
+        await axios.get('https://racctracc.herokuapp.com/api/uploads/getCount')
         .then((response) => {
             cnt = response.data.count;
             console.log(cnt);

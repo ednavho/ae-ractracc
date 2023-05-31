@@ -90,7 +90,7 @@ function UserProfile() {
         const getImg = async (path) => {
             console.log('Loading Images...');
             try {
-                let response = await axios.get('http://localhost:9000/api/uploads/getImage', { headers: { imagepath: path } });
+                let response = await axios.get('https://racctracc.herokuapp.com/api/uploads/getImage', { headers: { imagepath: path } });
                 return response.data;
             } catch (err) {
                 console.error(err);
