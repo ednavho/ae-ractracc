@@ -23,8 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 
-backend/.env
+.env
 backend/node_modules
 node_modules
-.env
+
 client/build

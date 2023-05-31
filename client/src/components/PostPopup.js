@@ -1,7 +1,7 @@
 import '../styles/PostPopup.css';
 import exitImg from '../media/exit.png';
 
-const PostPopup = ({ post, onClose }) => {
+const PostPopup = ({ post, image, onClose }) => {
   return (
     <div className='popup-cont'> 
       <div className="post-popup">
@@ -10,7 +10,7 @@ const PostPopup = ({ post, onClose }) => {
           <div className='location'>{post.location}</div>
           
           <div className='image-container'>
-            <img src={'https://racctracc.herokuapp.com/images/' + post.imagepath} alt="Post" />
+            <img src={image} alt="Post" />
           </div>
 
           <div className='caption'>{post.caption}</div>

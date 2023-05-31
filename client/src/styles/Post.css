@@ -1,82 +1,34 @@
 svg {
     font-size: 50px;
 }
-.camera b {
-    font-family: 'Indie Flower';
-    font-size: 50px;
-    font-weight: 300;
-    padding:5%;
-}
 
-.camera video {
-    border-radius: 50px;
-    margin-bottom: 10%;
-}
-
-.camera img {
-    border-radius: 50px;
-}
-
-.camera input {
-    padding: 12px 20px;
-    background-color: transparent;
-
-}
+.upload-cont {
+    width: 100vw;
+    max-width: 500px;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    background-color: #E9DBCE;
+} 
 
 .camera {
+    margin-top: 120px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     width: 90%;
-} 
-
-.camera button {
-    font-size: 10px;
-    font-weight: 900;
-    align-items: center;
-}
-.upload-cont {
-    width: 100%;
-    color: white;
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    min-height: 90vh;
-    margin: 0;
-    padding: 0;
+    height: 80%;
 } 
 
 
-.camera {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-}
-
-.camera Webcam {
+.screens img {
     width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.camera button {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    height: 50px;
-}
-
-.camera img {
-    width: 100%;
-    margin: 0;
-    padding: 0;
     aspect-ratio: 1;
+    margin-bottom: 20px;
 }
 
 
@@ -93,20 +45,65 @@ svg {
 
 
 .upload-form input {
+    padding-left: 5px;
+    height: 30px;
+    border-radius: 10px;
+    border-color: white;
+    border-style: solid;
+    color: #36251D;
     font-size: 20px;
 }
 
 .upload-form button {
-    height: 5vh;
+    height: 40px;
     font-size: 25px;
-    color: white;
+    color: #E9dbce;
+    background-color: #656d4a;
+    border-radius: 20px;
+    box-shadow: none;
+    border: none;
 }
 
+
+#retake {
+    position: absolute;
+    width: 25px;
+    top: 15px;
+    left: 15px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#retake img {
+    width: 100%;
+}
+
+
+
+
+
 .screens {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     row-gap: 10px;
+}
+
+.screens .webcam-cont {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 20px;
+    background-color: black;
+}
+
+.screens .webcam-cont .webcam{
+    width: 100%;
+    height: 100%;
+    background-color: black;
 }
 
 #sc {
@@ -114,14 +111,8 @@ svg {
     width: 100px;
     height: 100px;
     border-radius: 40%;
-}
-
-#retake {
     display: flex;
+    justify-content: center;
     align-items: center;
-    border-color: aliceblue;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
 }
 

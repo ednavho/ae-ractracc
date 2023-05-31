@@ -9,6 +9,7 @@ import '../styles/Register.css';
 export default function Register() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [registering, setRegistering] = useState(false);
@@ -16,7 +17,7 @@ export default function Register() {
 
     const handleRegister = async (event) => {
         event.preventDefault();
-        if (!name || !email || !password) {
+        if (!name || !username || !email || !password) {
             return;
         }
         setRegistering(true);
@@ -37,7 +38,7 @@ export default function Register() {
         console.log(`Registering user with name: ${name}, with email: ${email} and password: ${password}`);
 
         try {
-            const registerResponse = await axios.post("https://racctracc.herokuapp.com/api/users/register", {name, email, password});
+            const registerResponse = await axios.post("https://racctracc.herokuapp.com/api/users/register", {name, username, email, password});
             alert('User created! Check your email for an email verification link to activate your account.');
             setRegistering(false);
             console.log(registerResponse);
@@ -59,6 +60,10 @@ export default function Register() {
                 
                 <div className="input-field">
                     <input placeholder="Name" type="text" id="name" value={name} onChange={(event) => setName(event.target.value)}></input>
+                </div>
+
+                <div className="input-field">
+                    <input placeholder="Username" type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)}></input>
                 </div>
 
                 <div className="input-field">

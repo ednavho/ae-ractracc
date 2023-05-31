@@ -11,33 +11,27 @@ function UserProfile() {
 
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([]);
-
-
+    const [images, setImages] = useState([]);
 
     useEffect(() => {
         const getUser = async () => {
+            console.log('Loading User...');
             const token = localStorage.getItem('jwt_token');
             if (token) {
                 try {
-                    const fetchUser = await axios.get('https://racctracc.herokuapp.com/api/users/whoami', {
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
-                        }
-                    });
-                    setUser(fetchUser.data);
-                    await axios.get('https://racctracc.herokuapp.com/api/uploads/getUploads', {
+                    axios.get('https://racctracc.herokuapp.com/api/users/whoami', {
                         headers: {
                             'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
                         }
                     })
-                    .then((response) => {
-                        setPosts(response.data);
-                        // Handle any additional logic or UI updates
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        // Handle error
-                    });
+                        .then((res) => {
+                            setUser(res.data);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            console.error(error);
+                            // Handle error
+                        });
                 } catch (err) {
                     localStorage.removeItem('jwt_token');
                     alert('Invalid session, navigating to login page.');
@@ -50,13 +44,79 @@ function UserProfile() {
             }
             
         }
+
         getUser();
+        console.log('Loaded User:');
+        console.log(user);
     }, [navigate]);
 
-    const [selectedPost, setSelectedPost] = useState(null);
+ 
+    useEffect(() => {
+        const getUploads = async () => {
+            console.log('Loading Uploads...');
+            const token = localStorage.getItem('jwt_token');
+            if (token) {
+                try {
+                    await axios.get('https://racctracc.herokuapp.com/api/uploads/getUploads', {
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+                            }
+                        })
+                        .then((response) => {
+                            setPosts(response.data);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                            // Handle error
+                        });         
+                } catch (err) {
+                    localStorage.removeItem('jwt_token');
+                    alert('Invalid session, navigating to login page.');
+                    console.log(err);
+                    navigate('/');
+                }
+            }
+            else {
+                navigate('/');
+            }
+            
+        }
+        getUploads();
+        console.log('Uploads Loaded');
+        console.log(posts);
+    }, [navigate, user]);
 
-    const openPostPopup = (post) => {
+    useEffect(() => {
+        const getImg = async (path) => {
+            console.log('Loading Images...');
+            try {
+                let response = await axios.get('https://racctracc.herokuapp.com/api/uploads/getImage', { headers: { imagepath: path } });
+                return response.data;
+            } catch (err) {
+                console.error(err);
+                return null;
+            }
+        }
+
+        const fetchImages = async () => {
+            const imgPromises = posts.map((post) => getImg(post.imagepath));
+            const imgUrls = await Promise.all(imgPromises);
+            setImages(imgUrls);
+        };
+        
+        fetchImages();
+        console.log('Images Loaded');
+        console.log(images);
+    }, [navigate, posts, user], 3600);
+
+
+
+    const [selectedPost, setSelectedPost] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const openPostPopup = (post, img) => {
         setSelectedPost(post);
+        setSelectedImage(img);
       };
     
       const closePostPopup = () => {
@@ -82,18 +142,18 @@ function UserProfile() {
                 </div>
                 
                 <div className='post-sect'>    
-                    {posts.map((post) => (
-                        <div className="post-block" key={post.id}>
+                    {posts.map((post, idx) => (
+                        <div className="post-block" key={idx}>
                             <img
-                            src={'https://racctracc.herokuapp.com/images/' + post.imagepath}
+                            src={images[idx]}
                             alt="Post"
-                            onClick={() => openPostPopup(post)} // Add click event to open the post pop-up
+                            onClick={() => openPostPopup(post, images[idx])}
                             />
                         </div>
                     ))}
                 </div>
                 {selectedPost && (
-                    <PostPopup post={selectedPost} onClose={closePostPopup} />
+                    <PostPopup post={selectedPost} image={selectedImage} onClose={closePostPopup} />
                 )}
             </div>
             

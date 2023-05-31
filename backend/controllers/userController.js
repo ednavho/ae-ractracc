@@ -39,7 +39,7 @@ const registerUser = async (req, res) => {
             token: crypto.randomBytes(32).toString('hex'),
         });
 
-        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttp://localhost:3000/verify/${user.id}/${token.token}`;
+        const message = `Hi ${user.name},\n\nYou have succesfully created your RacTracc account! Click the following link to verify your account:\n\nhttps://racctracc.herokuapp.com/verify/${user.id}/${token.token}`;
         await sendEmail(user.email, "Verify Email to use RacTracc!", message);
 
         console.log(message);
@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { _id: user._id, name: user.name, email: user.email }, process.env.JWT_SECRET,
+            { _id: user._id, name: user.name, username: user.username, email: user.email }, process.env.JWT_SECRET,
             { expiresIn: '30d', }
         )
         return res.status(201).json({
@@ -160,7 +160,7 @@ const forgotPassword = async (req, res) => {
     }
 }
 
-// @desc    Obtains all registered users in database (for Pi use)
+// @desc    Obtains all registered users in database
 // @route   GET /everyone
 const getEveryone = async (req, res) => {
     try {

@@ -17,7 +17,6 @@ export default function Login() {
         if (!email || !password) {
             return;
         }
-        console.log(`Logging in with email: ${email} and password: ${password}`);
         setLoggingIn(true);
 
         try {
@@ -62,6 +61,10 @@ export default function Login() {
                 <button className="btn-log" type="submit" onClick={handleLogin}>Login</button>
 
 
+            </div>
+        </div>
+    )
+}
             </div>
         </div>
     )
